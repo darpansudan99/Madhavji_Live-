@@ -13,6 +13,15 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json({ limit: "10mb" }));
 
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 const PORT = process.env.PORT || 8080;
 
 // Connect to MongoDB database
@@ -114,7 +123,10 @@ const productModel = mongoose.model("product", schemaProduct);
 //api
 app.post("/uploadProduct", async (req, res) => {
   // Set CORS headers
-  res.header("Access-Control-Allow-Origin", "https://madhavji-live-frontend.vercel.app");
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://madhavji-live-frontend.vercel.app"
+  );
   res.header("Access-Control-Allow-Credentials", true);
   // console.log(req.body)
   const data = await productModel(req.body);
@@ -123,9 +135,12 @@ app.post("/uploadProduct", async (req, res) => {
 });
 
 app.get("/product", async (req, res) => {
-    // Set CORS headers for this route
-    res.header("Access-Control-Allow-Origin", "https://madhavji-live-frontend.vercel.app");
-    res.header("Access-Control-Allow-Credentials", true);
+  // Set CORS headers for this route
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://madhavji-live-frontend.vercel.app"
+  );
+  res.header("Access-Control-Allow-Credentials", true);
 
   const data = await productModel.find({});
   res.send(JSON.stringify(data));
