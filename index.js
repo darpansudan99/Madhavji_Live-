@@ -6,9 +6,10 @@ const dotenv = require("dotenv").config();
 
 const app = express();
 const corsOptions = {
-  origin: "https://madhavji-live-frontend.vercel.app",
+  origin: "*",
   credentials: true,
 };
+
 app.use(cors(corsOptions));
 app.use(express.json({ limit: "10mb" }));
 
@@ -112,6 +113,9 @@ const productModel = mongoose.model("product", schemaProduct);
 //save product in data
 //api
 app.post("/uploadProduct", async (req, res) => {
+  // Set CORS headers
+  res.header("Access-Control-Allow-Origin", "https://madhavji-live-frontend.vercel.app");
+  res.header("Access-Control-Allow-Credentials", true);
   // console.log(req.body)
   const data = await productModel(req.body);
   const datasave = await data.save();
