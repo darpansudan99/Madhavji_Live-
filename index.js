@@ -8,6 +8,8 @@ const app = express();
 const corsOptions = {
   origin: "*",
   credentials: true,
+  headers: [ "X-Requested-With", "X-Auth-Token", "Content-Type", "Content-Length", "Authorization", "Access-Control-Allow-Headers", "Accept", "Access-Control-Allow-Methods", "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"],
+  methods: ["GET" , "POST" , "PUTs"]
 };
 
 app.use(cors(corsOptions));
