@@ -119,6 +119,10 @@ app.post("/uploadProduct", async (req, res) => {
 });
 
 app.get("/product", async (req, res) => {
+    // Set CORS headers for this route
+    res.header("Access-Control-Allow-Origin", "https://madhavji-live-frontend.vercel.app");
+    res.header("Access-Control-Allow-Credentials", true);
+
   const data = await productModel.find({});
   res.send(JSON.stringify(data));
 });
