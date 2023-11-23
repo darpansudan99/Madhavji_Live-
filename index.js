@@ -141,7 +141,7 @@ app.post("/uploadProduct", async (req, res) => {
   // Set CORS headers
   res.header(
     "Access-Control-Allow-Origin",
-    "https://www.madhavji.in/"
+    "https://www.madhavji.in"
   );
   res.header("Access-Control-Allow-Credentials", true);
   // console.log(req.body)
@@ -154,7 +154,7 @@ app.get("/product", async (req, res) => {
   // Set CORS headers for this route
   res.header(
     "Access-Control-Allow-Origin",
-    "https://www.madhavji.in/"
+    "https://www.madhavji.in"
   );
   res.header("Access-Control-Allow-Credentials", true);
 
