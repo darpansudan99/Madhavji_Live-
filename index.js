@@ -6,7 +6,7 @@ const dotenv = require("dotenv").config();
 
 const app = express();
 const corsOptions = {
-  origin: "*",
+  origin: "https://www.madhavji.in",
   credentials: true,
   headers: [
     "X-Requested-With",
