@@ -28,7 +28,7 @@ app.use(express.json({ limit: "10mb" }));
 
 
 app.use(function (req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", 'https://www.madhavji.in');
   res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS,DELETE");
   res.setHeader(
     "Access-Control-Allow-Headers",
