@@ -6,7 +6,7 @@ const dotenv = require("dotenv").config();
 
 const app = express();
 const corsOptions = {
-  origin: "https://www.madhavji.in",
+  origin: "*",
   credentials: true,
   headers: [
     "X-Requested-With",
@@ -28,7 +28,7 @@ app.use(express.json({ limit: "10mb" }));
 
 
 app.use(function (req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", 'https://www.madhavji.in');
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS,DELETE");
   res.setHeader(
     "Access-Control-Allow-Headers",
@@ -141,7 +141,7 @@ app.post("/uploadProduct", async (req, res) => {
   // Set CORS headers
   res.header(
     "Access-Control-Allow-Origin",
-    "https://madhavji-live-frontend.vercel.app"
+    "https://www.madhavji.in/"
   );
   res.header("Access-Control-Allow-Credentials", true);
   // console.log(req.body)
@@ -154,7 +154,7 @@ app.get("/product", async (req, res) => {
   // Set CORS headers for this route
   res.header(
     "Access-Control-Allow-Origin",
-    "https://madhavji-live-frontend.vercel.app"
+    "https://www.madhavji.in/"
   );
   res.header("Access-Control-Allow-Credentials", true);
 
