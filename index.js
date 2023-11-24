@@ -197,7 +197,7 @@ app.post("/create-checkout-session", async (req, res) => {
 
     const session = await stripe.checkout.sessions.create(params);
     console.log(session);
-    res.status(200).json({ id: session.id });
+    res.status(200).json({id : session.id});
   } catch (err) {
     console.error(err);
     res
