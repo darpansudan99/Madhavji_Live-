@@ -202,8 +202,9 @@ app.post("/create-checkout-session", async (req, res) => {
     console.log(session)
     res.status(200).json(session.id);
   } catch (err) {
-    res.status(err.statusCode || 500).json(err.message);
-  }
+  console.error(err);
+  res.status(err.statusCode || 500).json({ error: err.message, stack: err.stack });
+}
 });
 
 //server is running
