@@ -162,6 +162,9 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 app.post("/create-checkout-session", async (req, res) => {
   console.log(req.body);
+  if (!Array.isArray(req.body) || req.body.length === 0) {
+    return res.status(400).json({ error: 'Invalid request body' });
+  }
   try {
     const params = {
       submit_type: "pay",
@@ -194,7 +197,7 @@ app.post("/create-checkout-session", async (req, res) => {
 
     const session = await stripe.checkout.sessions.create(params);
     console.log(session);
-    res.status(200).json(session.id);
+    res.status(200).json({ id: session.id });
   } catch (err) {
     console.error(err);
     res
