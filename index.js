@@ -168,7 +168,7 @@ app.post("/create-checkout-session", async (req, res) => {
       mode: "payment",
       payment_method_types: ["card"],
       billing_address_collection: "auto",
-      shipping_options: [{ shipping_rate: "shr_1OD0sDSBiTGeTWlnOtZi5bDZ" }],
+      // shipping_options: [{ shipping_rate: "shr_1OD0sDSBiTGeTWlnOtZi5bDZ" }],
 
       line_items: req.body.map((item) => {
         return {
