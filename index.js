@@ -170,7 +170,7 @@ app.post("/create-checkout-session", async (req, res) => {
       billing_address_collection: "auto",
       shipping_options: [{ shipping_rate: "shr_1OD0sDSBiTGeTWlnOtZi5bDZ" }],
 
-      line_items: req.body.map((item) => {
+      line_items: req.body?.map((item) => {
         return {
           price_data: {
             currency: "inr",
