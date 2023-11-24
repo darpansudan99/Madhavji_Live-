@@ -161,8 +161,8 @@ console.log(process.env.STRIPE_SECRET_KEY);
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 app.post("/create-checkout-session", async (req, res) => {
+  console.log(req.body);
   try {
-    console.log(req.body);
     const params = {
       submit_type: "pay",
       mode: "payment",
@@ -170,7 +170,7 @@ app.post("/create-checkout-session", async (req, res) => {
       billing_address_collection: "auto",
       shipping_options: [{ shipping_rate: "shr_1OD0sDSBiTGeTWlnOtZi5bDZ" }],
 
-      line_items: req.body?.map((item) => {
+      line_items: req.body.map((item) => {
         return {
           price_data: {
             currency: "inr",
