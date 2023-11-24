@@ -26,7 +26,6 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json({ limit: "10mb" }));
 
-
 app.use(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS,DELETE");
@@ -139,10 +138,7 @@ const productModel = mongoose.model("product", schemaProduct);
 //api
 app.post("/uploadProduct", async (req, res) => {
   // Set CORS headers
-  res.header(
-    "Access-Control-Allow-Origin",
-    "https://www.madhavji.in"
-  );
+  res.header("Access-Control-Allow-Origin", "https://www.madhavji.in");
   res.header("Access-Control-Allow-Credentials", true);
   // console.log(req.body)
   const data = await productModel(req.body);
@@ -152,10 +148,7 @@ app.post("/uploadProduct", async (req, res) => {
 
 app.get("/product", async (req, res) => {
   // Set CORS headers for this route
-  res.header(
-    "Access-Control-Allow-Origin",
-    "https://www.madhavji.in"
-  );
+  res.header("Access-Control-Allow-Origin", "https://www.madhavji.in");
   res.header("Access-Control-Allow-Credentials", true);
 
   const data = await productModel.find({});
@@ -169,8 +162,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 app.post("/create-checkout-session", async (req, res) => {
   try {
+    console.log(req.body);
     const params = {
-
       submit_type: "pay",
       mode: "payment",
       payment_method_types: ["card"],
@@ -200,12 +193,14 @@ app.post("/create-checkout-session", async (req, res) => {
     };
 
     const session = await stripe.checkout.sessions.create(params);
-    console.log(session)
+    console.log(session);
     res.status(200).json(session.id);
   } catch (err) {
-  console.error(err);
-  res.status(err.statusCode || 500).json({ error: err.message, stack: err.stack });
-}
+    console.error(err);
+    res
+      .status(err.statusCode || 500)
+      .json({ error: err.message, stack: err.stack });
+  }
 });
 
 //server is running
