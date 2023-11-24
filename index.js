@@ -169,6 +169,11 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 app.post("/create-checkout-session", async (req, res) => {
   try {
+    // Add a check for an empty request body
+    if (!req.body || req.body.length === 0) {
+      return res.status(400).json({ error: 'Empty request body' });
+    }
+    console.log("Request body:", req.body);
     const params = {
 
       submit_type: "pay",
@@ -198,11 +203,6 @@ app.post("/create-checkout-session", async (req, res) => {
       success_url: `${process.env.FRONTEND_URL}/success`,
       cancel_url: `${process.env.FRONTEND_URL}/cancel`,
     };
-    // Add a check for an empty request body
-    if (!req.body || req.body.length === 0) {
-      return res.status(400).json({ error: 'Empty request body' });
-    }
-
 
     const session = await stripe.checkout.sessions.create(params);
     console.log(session)
